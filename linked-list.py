@@ -110,6 +110,14 @@ class LinkedList:
             count += 1
             itr = itr.next
 
+        # this is an alternative way of doing it but I like the way I did it above better.
+        # itr = self.head
+        # while itr.next:
+        #     if itr.next.data == data:
+        #         itr.next = itr.next.next
+        #         break
+        #     itr = itr.next
+
     def print(self):
         if self.head is None:
             print('Linked list is empty')
