@@ -78,6 +78,38 @@ class LinkedList:
             itr = itr.next
             count += 1
 
+    def insert_after_value(self, data_after, data_to_insert):
+        if self.head is None:
+            return
+
+        if self.head.data == data_after:
+            self.head.next = Node(data_to_insert, self.head.next)
+            return
+
+        itr = self.head
+        while itr:
+            if itr.data == data_after:
+                itr.next = Node(data_to_insert, itr.next)
+                break
+
+            itr = itr.next
+
+    def remove_by_value(self, data):
+        if self.head is None:
+            return
+
+        if self.head.data == data:
+            self.head = self.head.next
+            return
+
+        itr = self.head
+        count = 0
+        while itr:
+            if itr.data == data:
+                self.remove_at(count)
+            count += 1
+            itr = itr.next
+
     def print(self):
         if self.head is None:
             print('Linked list is empty')
@@ -99,5 +131,6 @@ if __name__ == '__main__':
     ll.insert_from_beginning(81)
     ll.insert_at_end(72)
     # ll.remove_at(0)
-    ll.insert_at(0, 100)
+    ll.insert_after_value(4, 20)
+    # ll.remove_by_value(20)
     ll.print()
