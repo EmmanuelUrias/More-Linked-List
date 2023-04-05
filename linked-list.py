@@ -40,6 +40,26 @@ class LinkedList:
 
         return count
 
+    def insert_at(self, index, data):
+        if index < 0 or index >= self.get_length():
+            raise Exception('Invalid Index')
+
+        if index == 0:
+            self.insert_from_beginning(data)
+            return
+
+        count = 0
+        itr = self.head
+
+        while itr:
+            if count == index - 1:
+                node = Node(data, itr.next)
+                itr.next = node
+                break
+
+            itr = itr.next
+            count += 1
+
     def remove_at(self, index):
         if index < 0 or index >= self.get_length():
             raise Exception('Invalid Index')
@@ -52,8 +72,11 @@ class LinkedList:
         itr = self.head
         while itr:
             if count == index - 1:
-                itr.next
+                itr.next = itr.next.next
+                break
+
             itr = itr.next
+            count += 1
 
     def print(self):
         if self.head is None:
@@ -75,4 +98,6 @@ if __name__ == '__main__':
     ll.insert_from_beginning(8)
     ll.insert_from_beginning(81)
     ll.insert_at_end(72)
+    # ll.remove_at(0)
+    ll.insert_at(0, 100)
     ll.print()
